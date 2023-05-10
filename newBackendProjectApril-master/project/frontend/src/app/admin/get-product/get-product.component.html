@@ -1,0 +1,41 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">PRODUCTTITTLE</th>
+      <th scope="col">AREA</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">IMAGE NAME</th>
+      <th scope="col">FILE</th>
+      </tr>
+
+  </thead>
+  <tbody>
+    <TR *ngFor="let product of productList; let i = index">
+      <td>{{ i + 1 }}</td>
+      <TD>{{ product.tittle }}</TD>
+      <TD>{{ product.area }}</TD>
+      <TD>{{ product.price }}</TD>
+      <td>{{ product.image }}</td>
+
+      <TD>
+        <img
+          style="width: 200px"
+          src="/assets/IMAGES/{{ product.image }}"
+          alt="IMAGE" />
+      </TD>
+      <td >
+        <button class="btn btn-info" (click)="edit(product._id)">
+          EDIT-PRODUCT
+        </button>
+        <!-- <span style="display: inline-block;width:40px;margin-right: 20px;"></span> -->
+        <!-- <button
+         
+          class="btn btn-danger mx-3"
+          (click)="deletedata(product._id)" >
+          DELETE-PRODUCT
+        </button> -->
+      </td>
+    </TR>
+  </tbody>
+</table>

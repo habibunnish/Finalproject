@@ -1,0 +1,70 @@
+
+<div class="walpaper">
+  <h1>{{title}}</h1>
+ <div class="flex-container">
+   <div class="second">
+    <ngb-carousel >
+      <ng-template ngbSlide  *ngFor="let item of List">
+        <h5>{{new}}</h5>
+        <img src="assets/IMAGES/{{item.image}}"/>
+        <div class="carousel-caption">
+          <p>{{item.para}}</p>
+          <h5>{{item.title}}</h5>
+        </div>
+       </ng-template>
+    </ngb-carousel>
+    <div>
+      <button class="btn btn-primary" (click)="location('Chennai')" >EXPLORE MORE</button>
+    </div>
+   </div>
+ 
+   <div class="second">
+     <ngb-carousel >
+       <ng-template ngbSlide  *ngFor="let item of List2">
+        <h5>{{goa}}</h5>
+         <img src="assets/IMAGES/{{item.image}}"/>
+         <div class="carousel-caption">
+           <p>{{item.para}}</p>
+           <h5>{{item.title}}</h5>
+         </div>
+        </ng-template>
+     </ngb-carousel>
+     <div>
+       <button class="btn btn-primary" (click)="location('goa')" >EXPLORE MORE</button>
+     </div>
+    </div>
+  
+  <div class="second">
+     <ngb-carousel >
+       <ng-template ngbSlide  *ngFor="let item of List3">
+        <h5>{{bangluru}}</h5>
+         <img src="assets/IMAGES/{{item.image}}"/>
+         <div class="carousel-caption">
+           <p>{{item.para}}</p>
+           <h5>{{item.title}}</h5>
+         </div>
+        </ng-template>
+     </ngb-carousel>
+     <div>
+       <button class="btn btn-primary" (click)="location('Banguluru')" >EXPLORE MORE</button>
+     </div>
+    </div>
+ 
+  <div class="second">
+     <ngb-carousel >
+       <ng-template ngbSlide  *ngFor="let item of List4">
+        <h5>{{jammu}}</h5>
+         <img src="assets/IMAGES/{{item.image}}"/>
+         <div class="carousel-caption">
+           <p>{{item.para}}</p>
+           <h5>{{item.title}}</h5>
+         </div>
+        </ng-template>
+     </ngb-carousel>
+     <div>
+       <button class="btn btn-primary" (click)="location('Jammu')" >EXPLORE MORE</button>
+     </div>
+    </div>
+   </div>
+   </div>
+
