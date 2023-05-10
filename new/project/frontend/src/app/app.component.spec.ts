@@ -22,13 +22,13 @@ let Component:AppComponent;
    });
   
 
-  //  it('testing localstorage  of onlogout buton',()=>{
+  //  it('testing sessionStorage  of onlogout buton',()=>{
   //   fixture.detectChanges();
   //   fixture.whenStable().then(()=>{
   //     const onlogout=spyOn(Component,'onlogout').and.callThrough();
   //     const buttonElement:HTMLButtonElement=fixture.debugElement.nativeElement.querySelector('#logout');
   //     buttonElement.click();
-  //     localStorage.removeItem('userData');
+  //     sessionStorage.removeItem('userData');
   //     expect(onlogout).toBeFalsy();
   //   })
     

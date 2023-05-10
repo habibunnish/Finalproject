@@ -104,15 +104,15 @@ export class LoginFormComponent implements OnInit {
   }
 
   saveData() {
-    console.log('localstorage');
+    console.log('sessionStorage');
     const accessToken = this.localInterface?.accessToken;
 
-    localStorage.setItem('UsertToken', JSON.stringify(accessToken));
+    sessionStorage.setItem('UsertToken', JSON.stringify(accessToken));
   }
 
   admniData(){
-    console.log("admin localstorage");
+    console.log("admin sessionStorage");
     const accessToken=this.adminlocalInterface?.accessToken;
-    localStorage.setItem('adminToken',JSON.stringify(accessToken))
+    sessionStorage.setItem('adminToken',JSON.stringify(accessToken))
   }
 }

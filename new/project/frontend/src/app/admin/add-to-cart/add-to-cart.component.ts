@@ -21,7 +21,8 @@ export class AddToCartComponent implements OnInit {
   file: any;
   item: any;
   counts: any;
-
+  total=0;
+  account:any;
   constructor(
     private cart: CartDetailsService,
     private router: Router,
@@ -30,16 +31,22 @@ export class AddToCartComponent implements OnInit {
 
   addProduct(item: any) {
    console.log('print', item);
-   item.total= item.quantity*item.price 
-      this.booked.userBookedData(item).subscribe((data) => {
+
+   for (var i = 0; i < this.productQuantity.length; i++) {
+   
+      this.booked.userBookedData(this.productQuantity[i]).subscribe((data) => {
         console.log(data);
-        alert('product added successfully');
+      //  alert('product added successfully');
       });
+    }
   }
 
-  book(item: any) {
-    console.log(item);
-    this.addProduct(item);
+  book() {
+    for (var i = 0; i < this.productQuantity.length; i++) {
+      this.productQuantity[i].total = this.total;
+    }
+    console.log(this.productQuantity);
+    this.addProduct(this.productQuantity);
     alert('product has been booked successfully ');
     this.router.navigate(['user-booked-details']);
   }
@@ -54,9 +61,14 @@ export class AddToCartComponent implements OnInit {
       this.items = data;
       this.prodId = data;
       this.productQuantity = data;
-
+    
       for (var i = 0; i < this.productQuantity.length; i++) {
         this.productQuantity[i].quantity = 1;
+        this.productQuantity[i].subtotal = this.items[i].price;
+      }
+      
+      for (var i = 0; i < this.productQuantity.length; i++) {
+        this.total = this.total + this.productQuantity[i].subtotal;
       }
 
       console.log(this.items);
@@ -81,6 +93,8 @@ export class AddToCartComponent implements OnInit {
     if (this.productQuantity[index].quantity < 3) {
       this.productQuantity[index].quantity =
         this.productQuantity[index].quantity + 1;
+        this.total +=this.productQuantity[index].price
+        this.productQuantity[index].subtotal = this.productQuantity[index].subtotal + this.productQuantity[index].price;
     } else {
       alert('cannot book  room more than 3 times');
     }
@@ -88,11 +102,18 @@ export class AddToCartComponent implements OnInit {
 
   decQnt(index: any) {
     console.log('Product quantity ' + JSON.stringify(this.productQuantity));
-    if (this.productQuantity[index].quantity > 0) {
+    if (this.productQuantity[index].quantity > 1) {
       this.productQuantity[index].quantity =
         this.productQuantity[index].quantity - 1;
+        this.productQuantity[index].subtotal = this.productQuantity[index].subtotal - this.productQuantity[index].price;
+        this.total = this.total - this.productQuantity[index].price;
+
     } 
   }
-
+  removeAll(){
+    for (var i = 0; i < this.productQuantity.length; i++) {
+     this.delete(this.productQuantity[i]);
+    }
+  }
 
 }

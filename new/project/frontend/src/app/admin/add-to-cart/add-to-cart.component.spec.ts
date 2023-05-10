@@ -32,7 +32,7 @@ describe('UserBookedDetailsComponent ', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AddToCartComponent);
     component = fixture.componentInstance;
-    localStorage.setItem('userData',JSON.stringify({email:'test@ex.com'}));
+    sessionStorage.setItem('userData',JSON.stringify({email:'test@ex.com'}));
     router=TestBed.inject(Router);
     httptestingcontroller=TestBed.inject(HttpTestingController);
     booked=TestBed.inject(BookedDetailsService);

@@ -25,12 +25,12 @@ export class AppComponent {
   }
 
   get loggedIn() {
-    return localStorage.getItem('UsertToken');
+    return sessionStorage.getItem('UsertToken');
   }
 
   onLogout() {
-    localStorage.removeItem('UsertToken');
-    localStorage.removeItem('adminToken');
+    sessionStorage.removeItem('UsertToken');
+    sessionStorage.removeItem('adminToken');
   }
 
   bookDetailsNew() {
@@ -47,18 +47,18 @@ export class AppComponent {
   }
   goToAddNewPage() {
     // console.log('addnew data page');
-    this.router.navigate(['add-new-data/' + 0]);
+    this.router.navigate(['add-new-data/' + 'addHotel']);
   }
   userBooked() {
     this.router.navigate(['user-booked-details']);
   }
 
   get adminLoggedIn() {
-    // console.log(localStorage.getItem('adminToken'));
+    // console.log(sessionStorage.getItem('adminToken'));
 
-    return localStorage.getItem('adminToken');
+    return sessionStorage.getItem('adminToken');
   }
   onadminlogout() {
-    localStorage.removeItem('adminToken');
+    sessionStorage.removeItem('adminToken');
   }
 }

@@ -9,7 +9,8 @@ module.exports=mongoose=>{
                 price:{type:Number,required:true},
                 location:{type:String,required:true},
                 locations:{type:String,required:true},
-                quantity:{type:Number,}
+                quantity:{type:Number,},
+                base64String:{type:String}
                
                
             },

@@ -27,7 +27,7 @@ app.get("/main-page", verifyAccessToken, async(req,res,next)=>{
     res.send("user hello");
 });
 
-app.get("/get-product", adminVerifyAccessToken,async(req,res,next)=>{
+app.get("/location1", adminVerifyAccessToken,async(req,res,next)=>{
     console.log(req.headers["authorization"]);
     res.send("admin hello");
 });

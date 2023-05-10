@@ -10,6 +10,7 @@ exports.addProductDetails=(req,res)=>{
         location: req.body.location,
         locations:req.body.locations,
         quantity:req.body.quantity,
+        base64String:req.body.base64String
         
     });
     

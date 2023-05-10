@@ -8,6 +8,7 @@ module.exports=mongoose=>{
            image:{type:String,required:true},
            location:{type:String,required:true},
            quantity:{type:Number},
+           subtotal:{type:Number},
            total:{type:Number}
         },
         {timestamps:true}
