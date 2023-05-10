@@ -13,11 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddNewDataComponent implements OnInit {
   
-  location: any;
+  location: any
   file: any;
   id: any;
   chosenMod: any;
-
   @Output()
   change = new EventEmitter();
 

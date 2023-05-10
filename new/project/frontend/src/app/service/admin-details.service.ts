@@ -9,7 +9,7 @@ export class AdminDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url='http://localhost:8080';
-  URLS='http://localhost:8082'
+  URLS='http://localhost:8083'
   
   adminRegister(data: any) {
     return this.httpClient.post(`${this.URLS}/api/admin`,data

@@ -8,7 +8,7 @@ export class CityDetailsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  url="http://localhost:8082";
+  url="http://localhost:8083";
 
   addProductsDetails(createResource: any) {
     const httpHeaders = new HttpHeaders();
