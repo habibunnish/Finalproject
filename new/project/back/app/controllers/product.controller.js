@@ -1,4 +1,4 @@
-const db = require("../../app/models");
+const db = require("../models");
 const Product = db.product;
 
 exports.addProductDetails = (req, res) => {
@@ -13,12 +13,12 @@ exports.addProductDetails = (req, res) => {
     base64String: req.body.base64String,
   });
 
-  // const { error, value } = Product.validate(req.body);
-  // if (error) {
-  //   return res.status(400).send({
-  //     message: error.details[0].message
-  //   });
-  // }
+  const { error, value } = Product.validate(req.body);
+  if (error) {
+    return res.status(400).send({
+      message: error.details[0].message
+    });
+  }
   product
     .save(product)
     .then((data) => {
