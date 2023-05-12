@@ -1,4 +1,4 @@
-const db=require("../models");
+const db=require("../../app/models");
 const mainPage=db.main;
 
 exports.main=(req,res)=>{

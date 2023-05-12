@@ -1,52 +1,45 @@
-const express=require("express");
-const cors=require("cors");
-const createError=require("http-errors");
+const express = require("express");
+const cors = require("cors");
+const createError = require("http-errors");
 
 require("dotenv").config();
-const app=express();
+const app = express();
 
-
-
-app.use(cors({
-    origin:"http://localhost:4200",
-}));
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+  })
+);
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/",(req,res)=>{
-    // console.log(req.headers["authorization"]);
-    res.send("hello");
-    // res.json({message:"welcome to room booking site"});
+app.get("/", (req, res) => {
+  // console.log(req.headers["authorization"]);
+  res.send("hello");
+  // res.json({message:"welcome to room booking site"});
 });
 
-
-
-
-
-const db=require("./app/models");
-db.mongoose.connect(db.url,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-}).then(()=>{
+const db = require("./app/models");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
     console.log("connected to the databse");
-})
-.catch(err=>{
+  })
+  .catch((err) => {
     console.log("cannot connect to databse");
     process.exit();
-})
+  });
 
-
-
-require("./app/routes/product.routes")(app);
+// require("../back/routes/product.routes")(app);
 require("./app/routes/cart.routes")(app);
-require("./app/routes/main.routes")(app);
-require("./app/routes/city.routes")(app);
-require("./app/routes/booked.routes")(app);
+require("../back/app/routes/main.routes")(app);
+require("../back/app/routes/city.routes")(app);
+require("../back/app/routes/booked.routes")(app);
 
-
-
-const PORT=process.env.PORT || 8083;
-app.listen(PORT,()=>{
-    
-    console.log(`server is running on http://localhost:${PORT}`);
-})
+const PORT = process.env.PORT || 8083;
+app.listen(PORT, () => {
+  console.log(`server is running on http://localhost:${PORT}`);
+});

@@ -12,7 +12,7 @@ export class AdminDetailsService {
   URLS='http://localhost:8083'
   
   adminRegister(data: any) {
-    return this.httpClient.post(`${this.URLS}/api/admin`,data
+    return this.httpClient.post(`${this.url}/api/admin`,data
     );
   }
 
