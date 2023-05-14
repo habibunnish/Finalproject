@@ -5,7 +5,7 @@ const User=require("../Models/User.model");
 const Admin=require("../Models/Admin.model");
 const {authSchema}=require("../helpers/validation_schema");
 const {adminLoginSchema}=require("../helpers/adminValidation_schema")
-const {signAccessToken,signRefreshToken,verifyRefreshToken}=require("../helpers/jwt_hepler");
+const {signAccessToken,signRefreshToken,verifyRefreshToken,authenticateToken}=require("../helpers/jwt_hepler");
 const { adminSignAccessToken, AdminSignRefreshToken } = require("../helpers/adminJwt_helper");
 
 
@@ -68,19 +68,6 @@ router.post("/refresh-token",async(req,res,next)=>{
     }
 });
 
-// router.delete("/logout",async(req,res,next)=>{
-//    try{
-//     const {refreshToken}=req.body
-//     if(!refreshToken) throw createError.BadRequest()
-//     const userId=await verifyRefreshToken(refreshToken)
-   
-    
-//    }
-//    catch(error){
-//         next(error)
-//    }
-// })
-
 
 router.post("/adminregister",async(req,res,next)=>{
     console.log(req.body)
@@ -119,4 +106,7 @@ router.post("/adminlogin",async(req,res,next)=>{
         next(error)
     }
 })
+
+
+
 module.exports=router

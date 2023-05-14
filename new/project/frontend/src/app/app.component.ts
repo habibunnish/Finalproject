@@ -8,7 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router, private cart: CartDetailsService) {}
+  constructor(
+    private router: Router,
+    private cart: CartDetailsService
+  ) {}
 
   totalItem: any;
 
@@ -34,7 +37,6 @@ export class AppComponent {
   }
 
   bookDetailsNew() {
-    // console.log('mainpage');
     this.router.navigate(['main-page']);
   }
 
@@ -46,7 +48,6 @@ export class AppComponent {
     this.router.navigate(['how-it-work']);
   }
   goToAddNewPage() {
-    // console.log('addnew data page');
     this.router.navigate(['add-new-data/' + 'addHotel']);
   }
   userBooked() {
@@ -54,10 +55,9 @@ export class AppComponent {
   }
 
   get adminLoggedIn() {
-    // console.log(sessionStorage.getItem('adminToken'));
-
     return sessionStorage.getItem('adminToken');
   }
+
   onadminlogout() {
     sessionStorage.removeItem('adminToken');
   }

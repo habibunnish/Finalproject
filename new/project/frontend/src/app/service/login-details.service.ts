@@ -18,12 +18,12 @@ export class LoginDetailsService {
     });
   }
 
- getUserLogin() {
-  return this.httpClient.get(`${this.url}/auth/login`)
- };
+//  getUserLogin() {
+//   return this.httpClient.get(`${this.url}/auth/login`)
+//  };
 
-  adminLoginDetailsGet(){
-    return this.httpClient.get(`${this.url}/auth/adminlogin`)
-  };
+  // adminLoginDetailsGet(){
+  //   return this.httpClient.get(`${this.url}/auth/adminlogin`)
+  // };
 
 }

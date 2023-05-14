@@ -12,12 +12,6 @@ exports.userBookedData=(req,res)=>{
         subtotal:req.body.subtotal,
         total:req.body.total
     });
-    // const { error, value } = Booked.validate(req.body);
-    // if (error) {
-    //   return res.status(400).send({
-    //     message: error.details[0].message
-    //   });
-    // }
     console.log(booked)
     booked.save(booked).then((data)=>{
         res.send(data);

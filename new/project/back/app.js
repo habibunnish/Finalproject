@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const AuthRoute = require("./Routes/Auth.route");
-const { verifyAccessToken } = require("./helpers/jwt_hepler");
+const { verifyAccessToken, authenticateToken } = require("./helpers/jwt_hepler");
 const morgan = require("morgan");
 const { adminVerifyAccessToken } = require("./helpers/adminJwt_helper");
 app.use(morgan("dev"));
@@ -31,10 +31,17 @@ app.get("/main-page", verifyAccessToken, async (req, res, next) => {
   res.send("user hello");
 });
 
-app.get("/location1", adminVerifyAccessToken, async (req, res, next) => {
+app.get("/get-product", adminVerifyAccessToken, async (req, res, next) => {
   console.log(req.headers["authorization"]);
   res.send("admin hello");
 });
+
+
+// app.get("/main-page",authenticateToken,async(req,res,next)=>{
+//   res.send("usersss");
+//   console.log(req.headers['authorization']);
+// })
+
 
 app.get("/auth/register", (req, res) => {
   res.send("registered");
