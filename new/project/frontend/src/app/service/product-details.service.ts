@@ -10,12 +10,13 @@ export class ProductDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url="http://localhost:8080";
-
+usertoken=sessionStorage.getItem("UsertToken");
   getProduct() {
-    console.log('getProduct method');
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.get(`${this.url}/api/product`, { headers: httpHeaders,}
+    console.log(this.usertoken);
+     const headers=new HttpHeaders({
+      'Authorization':`Bearer ${this.usertoken}`
+    })
+    return this.httpClient.get(`${this.url}/api/product/get`, { headers}
     );
   }
 
@@ -31,7 +32,7 @@ export class ProductDetailsService {
   addProductDetails(data: any) {
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.post( `${this.url}/api/product`,data);
+    return this.httpClient.post( `${this.url}/api/product/post`,data);
   };
   
    deleteProductChennai(id: number) {

@@ -13,12 +13,12 @@ exports.addProductDetails = (req, res) => {
     base64String: req.body.base64String,
   });
 
-  const { error, value } = Product.validate(req.body);
-  if (error) {
-    return res.status(400).send({
-      message: error.details[0].message
-    });
-  }
+  // const { error, value } = Product.validate(req.body);
+  // if (error) {
+  //   return res.status(400).send({
+  //     message: error.details[0].message
+  //   });
+  // }
   product
     .save(product)
     .then((data) => {
@@ -36,6 +36,7 @@ exports.getProduct = (req, res) => {
     .then((data) => {
       console.log("ddxxfxghcjkfcgvhbjn");
       res.send(data);
+      
     })
     .catch((err) => {
       console.log(".................");

@@ -49,6 +49,7 @@ export class AddToCartComponent implements OnInit {
     this.addProduct(this.productQuantity);
     alert('product has been booked successfully ');
     this.router.navigate(['user-booked-details']);
+    this.removeAll();
   }
 
   ngOnInit() {

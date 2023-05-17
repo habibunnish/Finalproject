@@ -26,21 +26,24 @@ app.get("/", (req, res) => {
   res.send("hi welcome");
 });
 
-app.get("/main-page", verifyAccessToken, async (req, res, next) => {
+// app.get("/api/product/get",  async (req, res, next) => {
+//   console.log(req.headers["authorization"]);
+//    res.send();
+// });
+
+
+
+app.post("/api/product/post", verifyAccessToken, async (req, res, next) => {
   console.log(req.headers["authorization"]);
-  res.send("user hello");
+  res.send("user  post  data hello");
 });
+
+
 
 app.get("/get-product", adminVerifyAccessToken, async (req, res, next) => {
   console.log(req.headers["authorization"]);
   res.send("admin hello");
 });
-
-
-// app.get("/main-page",authenticateToken,async(req,res,next)=>{
-//   res.send("usersss");
-//   console.log(req.headers['authorization']);
-// })
 
 
 app.get("/auth/register", (req, res) => {

@@ -8,12 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookDetailsNewModule } from './book-details-new/book-details-new.module';
 import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './service/auth.guard';
 
 
 
 @NgModule({
   declarations: [AppComponent,],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,

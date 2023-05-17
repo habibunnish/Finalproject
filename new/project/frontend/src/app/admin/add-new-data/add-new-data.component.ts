@@ -1,3 +1,4 @@
+import { AdminDetailsService } from './../../service/admin-details.service';
 import { ProductDetailsService } from './../../service/product-details.service';
 import { CityDetailsService } from './../../service/city-details.service';
 import { HttpClient } from '@angular/common/http';
@@ -48,7 +49,7 @@ export class AddNewDataComponent implements OnInit {
     private city: CityDetailsService,
     private product:ProductDetailsService,
     private activatedRoute: ActivatedRoute,
-    
+    private admin:AdminDetailsService
     
   ) {}
 
@@ -151,18 +152,7 @@ export class AddNewDataComponent implements OnInit {
     });
     alert('deleted this details');
   }
-
-  onFileSElected(event:any){
-    this.file = event.target.files[0];
-    if(this.file){
-      const reader:FileReader=new FileReader();
-      reader.onload=(e:any)=>{
-        this.base64String=e.target.result;
-        console.log(this.base64String);
-      };
-      reader.readAsDataURL(this.file)
-    }
-  }
+  
   getFile(event: any) {
     this.file = event.target.files[0];
     if(this.file){
@@ -179,14 +169,22 @@ export class AddNewDataComponent implements OnInit {
     this.selectedImage=this.roomDetails.image
     console.log('getfile');
   }
+
   submitData() {
     console.log("submit")
     let formData = new FormData();
     formData.set('file',this.base64String,this.file.name);
     console.log('formData',this.file,this.file.name)
-    this.http.post('http://localhost:8080/api/product', formData).subscribe((res) => {
-      console.log(res);
-    });
+  
+    // this.http.post('http://localhost:8080/api/product', formData).subscribe((res) => {
+    //   console.log(res);
+    // });
+   
+  //get method:-
+     this.admin.photo(formData).subscribe((res)=>{
+       console.log(res);
+     });
+
   }
   checkPage() {
     this.router.navigate(['get-product']);

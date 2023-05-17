@@ -1,4 +1,4 @@
-import { adminLocal} from './adminLocal';
+import { adminLocal } from './adminLocal';
 import { AdminDetailsService } from './../../service/admin-details.service';
 import { LoginDetailsService } from './../../service/login-details.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -12,8 +12,6 @@ import { Local } from './local';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
- 
-
   visible: boolean = true;
   changeType: boolean = true;
 
@@ -22,9 +20,9 @@ export class LoginFormComponent implements OnInit {
   emails: any;
   passwords: any;
   static loginForm: any;
- 
+
   //@ts-check
-   viewPass() {
+  viewPass() {
     this.visible = !this.visible;
     this.changeType = !this.changeType;
   }
@@ -42,14 +40,13 @@ export class LoginFormComponent implements OnInit {
       password: ['', Validators.required],
       email: ['', Validators.required],
     });
-
   }
   password: any;
   email: any;
 
   localInterface: Local | null = null;
   adminlocalInterface: adminLocal | null = null;
-  
+
   constructor(
     private login: LoginDetailsService,
     private fb: FormBuilder,
@@ -64,41 +61,40 @@ export class LoginFormComponent implements OnInit {
     };
     console.log(newFormData);
     this.login.login(newFormData).subscribe((resultData: any) => {
-      if(resultData){
+      if (resultData) {
         this.localInterface = resultData;
         console.log(
-        this.localInterface?.accessToken,
-        this.localInterface?.refreshToken
-      );
-      this.saveData();
-      this.router.navigate(['main-page']);
-      }
-      else{
+          this.localInterface?.accessToken,
+          this.localInterface?.refreshToken
+        );
+        this.saveData();
+        this.router.navigate(['main-page']);
+      } else {
         console.log(newFormData);
         this.adminLogin();
       }
     });
-   
   }
+
   adminLogin() {
     const newFormData = {
       password: this.password,
       email: this.email,
     };
     console.log(newFormData);
-    this.adminData.adminLogin(newFormData).subscribe((data:any) => {
-      if(data!=null){
-        this.adminlocalInterface=data;
+    this.adminData.adminLogin(newFormData).subscribe((data: any) => {
+      if (data != null) {
+        this.adminlocalInterface = data;
         console.log(
           this.adminlocalInterface?.accessToken,
           this.adminlocalInterface?.refreshToken
-        )
-        this. admniData()
-        this.router.navigate(['get-product'])
-        }
-      });
-    };
-  
+        );
+        this.admniData();
+        this.router.navigate(['get-product']);
+      }
+    });
+  }
+
   store() {
     this.router.navigate(['register-form']);
   }
@@ -107,12 +103,12 @@ export class LoginFormComponent implements OnInit {
     console.log('sessionStorage');
     const accessToken = this.localInterface?.accessToken;
 
-    sessionStorage.setItem('UsertToken', JSON.stringify(accessToken));
+    sessionStorage.setItem('UsertToken', accessToken);
   }
 
-  admniData(){
-    console.log("admin sessionStorage");
-    const accessToken=this.adminlocalInterface?.accessToken;
-    sessionStorage.setItem('adminToken',JSON.stringify(accessToken))
+  admniData() {
+    console.log('admin sessionStorage');
+    const accessToken = this.adminlocalInterface?.accessToken;
+    sessionStorage.setItem('adminToken',accessToken);
   }
 }

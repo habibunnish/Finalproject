@@ -38,38 +38,27 @@ jammu="This is a jammu hotels"
   }
 
   dynamic(){
-     console.log('method to display');
     this.main.mainPage().subscribe(data=>{
       this.List=data;
-      console.log(this.List);
       console.log(data);
      })
    }
 
    next(){
-    console.log('method to display');
     this.main.mainpageGoa().subscribe(data=>{
       this.List2=data;
-      console.log(this.List2);
-      console.log(data);
      })
    }
    
    display(){
-    console.log('method to display');
     this.main.bangaluru().subscribe(data=>{
       this.List3=data;
-      console.log(this.List3);
-      console.log(data);
      })
    }
 
    show(){
-    console.log('method to display');
     this.main.jammu().subscribe(data=>{
       this.List4=data;
-      console.log(this.List4);
-      console.log(data);
      })
    }
 

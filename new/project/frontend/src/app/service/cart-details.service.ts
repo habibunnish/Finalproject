@@ -13,17 +13,23 @@ export class CartDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url="http://localhost:8080";
+  usertoken=sessionStorage.getItem('UsertToken');
   
   getProducts() {
     return this.productList.asObservable();
   }
 
+  
+
+
   getAddCartDetailsOfAllLocation(){
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.get(`${this.url}/api/cart`,{
-      headers: httpHeaders,
-    });
+    console.log(this.usertoken);
+    
+    const headers=new HttpHeaders({
+      'Authorization':`Bearer ${this.usertoken}`
+    })
+    console.log(headers,'token');
+    return this.httpClient.get(`${this.url}/api/cart`,{ headers});
     
   };
 

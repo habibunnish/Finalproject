@@ -5,7 +5,7 @@ const User=require("../Models/User.model");
 const Admin=require("../Models/Admin.model");
 const {authSchema}=require("../helpers/validation_schema");
 const {adminLoginSchema}=require("../helpers/adminValidation_schema")
-const {signAccessToken,signRefreshToken,verifyRefreshToken,authenticateToken}=require("../helpers/jwt_hepler");
+const {signAccessToken,signRefreshToken,verifyRefreshToken}=require("../helpers/jwt_hepler");
 const { adminSignAccessToken, AdminSignRefreshToken } = require("../helpers/adminJwt_helper");
 
 
@@ -39,7 +39,7 @@ router.post("/login",async(req,res,next)=>{
         if(!user) throw createError.NotFound("user not register");
         const isMatch=await user.isValidPassword(result.password)
         if(!isMatch) throw createError.Unauthorized("useremail/password not valid")
-        const accessToken=await signAccessToken(user.id,user.role);
+        const accessToken=await signAccessToken(user.id);
         const refreshToken= await signRefreshToken(user.id);
         res.send({accessToken,refreshToken});
         console.log({accessToken,refreshToken})

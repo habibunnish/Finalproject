@@ -9,33 +9,25 @@ export class AdminDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url='http://localhost:8080';
-  URLS='http://localhost:8083'
-  
-  // adminRegister(data: any) {
-  //   return this.httpClient.post(`${this.url}/api/admin`,data
-  //   );
-  // }
+  token=sessionStorage.getItem('adminToken');
+  usertoken=sessionStorage.getItem("UsertToken")
 
-  // adminRegisterDetail(data:any){
-  //   const httpHeaders = new HttpHeaders();
-  //   httpHeaders.append('content-type', 'application/json');
-  //   return this.httpClient.post(`${this.url}/auth/adminregister`,data,{ headers: httpHeaders }
-  //   );
-  // }
+  
+  adminRegisterDetail(data:any){
+    return this.httpClient.post(`${this.url}/auth/adminregister`,data
+    );
+  }
 
   adminLogin(data:any){
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.post(`${this.url}/auth/adminlogin`,data,{ headers: httpHeaders }
-    );
+    return this.httpClient.post(`${this.url}/auth/adminlogin`,data);
     }
 
-  // adminLoginDetailsGet(data:any) {
-  //   const httpHeaders = new HttpHeaders();
-  //   httpHeaders.append('content-type', 'application/json');
-  //   return this.httpClient.post(`${this.URLS}/api/admin`,data,{ headers: httpHeaders }
-  //   );
-  // };
-
+  photo(data:any){
+    const headers=new HttpHeaders({
+      'Authorization':`Bearer ${this.usertoken}`
+    })
+    console.log(headers,'token');
+    return this.httpClient.post(`${this.url}/api/product`,data)
+  }
  
 }

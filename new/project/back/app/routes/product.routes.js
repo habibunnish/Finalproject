@@ -1,9 +1,10 @@
+const data=require('../../helpers/jwt_hepler')
 module.exports = (app) => {
   const product = require("../controllers/product.controller.js");
   var router = require("express").Router();
   
-  router.post("/", product.addProductDetails);
-  router.get("/", product.getProduct);
+  router.post("/post", product.addProductDetails);
+  router.get("/get",data.verifyAccessToken,product.getProduct);
   router.get("/:id", product.getEdit);
   router.put("/:id", product.putProduct);
   router.delete("/:id", product.deleteProductChennai);
