@@ -52,7 +52,6 @@ router.post("/login",async(req,res,next)=>{
 });
 
 router.post("/refresh-token",async(req,res,next)=>{
-    // res.send("refreshroute");
     try{
         const { refreshToken }=req.body
         if(!refreshToken) throw createError.BadRequest()
@@ -70,8 +69,6 @@ router.post("/refresh-token",async(req,res,next)=>{
 
 
 router.post("/adminregister",async(req,res,next)=>{
-    console.log(req.body)
-
     try{
         const result=await adminLoginSchema.validateAsync(req.body);
         const doesexist=await Admin.findOne({email:result.email});

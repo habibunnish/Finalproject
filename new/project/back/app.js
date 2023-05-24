@@ -4,14 +4,9 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const AuthRoute = require("./Routes/Auth.route");
-const { verifyAccessToken, authenticateToken } = require("./helpers/jwt_hepler");
 const morgan = require("morgan");
-const { adminVerifyAccessToken } = require("./helpers/adminJwt_helper");
 app.use(morgan("dev"));
 require("./helpers/init_mongodb");
-
-
-
 
 app.use(
   cors({
@@ -26,47 +21,14 @@ app.get("/", (req, res) => {
   res.send("hi welcome");
 });
 
-// app.get("/api/product/get",  async (req, res, next) => {
-//   console.log(req.headers["authorization"]);
-//    res.send();
-// });
-
-
-
-app.post("/api/product/post", verifyAccessToken, async (req, res, next) => {
-  console.log(req.headers["authorization"]);
-  res.send("user  post  data hello");
-});
-
-
-
-app.get("/get-product", adminVerifyAccessToken, async (req, res, next) => {
-  console.log(req.headers["authorization"]);
-  res.send("admin hello");
-});
-
-
-app.get("/auth/register", (req, res) => {
-  res.send("registered");
-});
-
-app.get("/auth/login", (req, res) => {
-  res.send("login ");
-});
-
-app.get("/auth/adminlogin", (req, res) => {
-  res.send("login ");
-});
-app.get("/auth/adminregister", (req, res) => {
-  res.send("registered");
-});
-
 
 require("./app/routes/product.routes")(app);
 require("./app/routes/main.routes")(app);
 require("./app/routes/city.routes")(app);
 require("./app/routes/cart.routes")(app);
 require("./app/routes/booked.routes")(app);
+
+
 
 app.use("/auth", AuthRoute);
 
@@ -83,7 +45,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 808;
 app.listen(PORT, () => {
   console.log(`server lisyening on port http://localhost:${PORT}`);
 });

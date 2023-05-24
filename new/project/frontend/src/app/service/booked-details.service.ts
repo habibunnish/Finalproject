@@ -9,6 +9,7 @@ export class BookedDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url='http://localhost:8080';
+  usertoken=sessionStorage.getItem('UsertToken');
 
   userBookedData(createResource: any) {
     const httpHeaders = new HttpHeaders();
@@ -20,12 +21,10 @@ export class BookedDetailsService {
   };
 
   getBookedData(){
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-    return this.httpClient.get(`${this.url}/api/booked`,{
-      headers: httpHeaders,
-    });
-    
-  };
-
-}
+    console.log(this.usertoken);
+    const headers = new HttpHeaders({
+      'Authorization':`Bearer ${this.usertoken}`
+    })
+    return this.httpClient.get(`${this.url}/api/booked/get`,{headers });
+    };
+  }

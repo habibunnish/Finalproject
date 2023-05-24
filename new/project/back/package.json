@@ -14,7 +14,7 @@
     "mongodb",
     "api"
   ],
-  "author": "",
+  "author": "habibunnisha",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",

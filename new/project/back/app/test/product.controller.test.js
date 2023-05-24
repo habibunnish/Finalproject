@@ -30,14 +30,20 @@ describe('Product API', () => {
             const savedProduct = res.body;
             expect(savedProduct).to.have.property('_id');
             expect(savedProduct.tittle).to.equal(productData.tittle);
-            // Add more assertions as needed
             done();
           });
       });
   
       it('should return an error if product details are invalid', (done) => {
         const invalidProductData = {
-          // Provide invalid or incomplete product data here
+          tittle: '',
+          area: '',
+          price: 9.99,
+          image: '',
+          location: '',
+          locations: '',
+          quantity: 10,
+          base64String: '',
         };
   
         request(app)
@@ -47,7 +53,6 @@ describe('Product API', () => {
           .end((err, res) => {
             if (err) return done(err);
             expect(res.body).to.have.property('message');
-            // Add more assertions as needed
             done();
           });
       });
@@ -62,16 +67,13 @@ describe('Product API', () => {
             if (err) return done(err);
             const products = res.body;
             expect(products).to.be.an('array');
-            // Add more assertions as needed
-            done();
+           done();
           });
       });
     });
 
 describe('Product API', () => {
   let productId;
-
-  // Create a new product before running the test cases
   before((done) => {
     const productData = {
       title: 'Test Product',
@@ -100,8 +102,8 @@ describe('Product API', () => {
         .end((err, res) => {
           expect(res).to.have.status(200);
           const product = res.body;
-          // Add additional assertions to validate the retrieved product if needed
-          done();
+          console.log(product)
+         done();
         });
     });
   });

@@ -14,6 +14,7 @@ export class CartDetailsService {
 
   url="http://localhost:8080";
   usertoken=sessionStorage.getItem('UsertToken');
+  admintoken=sessionStorage.getItem("adminToken");
   
   getProducts() {
     return this.productList.asObservable();
@@ -25,11 +26,12 @@ export class CartDetailsService {
   getAddCartDetailsOfAllLocation(){
     console.log(this.usertoken);
     
-    const headers=new HttpHeaders({
+    const headers=this.usertoken?new HttpHeaders({
       'Authorization':`Bearer ${this.usertoken}`
+    }):new HttpHeaders({
+      'Authorization':`Bearer ${this.admintoken}`
     })
-    console.log(headers,'token');
-    return this.httpClient.get(`${this.url}/api/cart`,{ headers});
+    return this.httpClient.get(`${this.url}/api/cart/get`,{ headers});
     
   };
 

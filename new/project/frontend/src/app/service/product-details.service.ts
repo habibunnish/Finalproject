@@ -10,11 +10,15 @@ export class ProductDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url="http://localhost:8080";
-usertoken=sessionStorage.getItem("UsertToken");
+  usertoken=sessionStorage.getItem("UsertToken");
+  admintoken=sessionStorage.getItem("adminToken");
   getProduct() {
     console.log(this.usertoken);
-     const headers=new HttpHeaders({
+
+     const headers=this.usertoken?new HttpHeaders({
       'Authorization':`Bearer ${this.usertoken}`
+    }):new HttpHeaders({
+      'Authorization':`Bearer ${this.admintoken}`
     })
     return this.httpClient.get(`${this.url}/api/product/get`, { headers}
     );

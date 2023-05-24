@@ -1,3 +1,4 @@
+import { AuthGuard } from './../service/auth.guard';
 import { LoginFormComponent } from './../users/login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,10 +8,10 @@ import { GetProductComponent } from './get-product/get-product.component';
 import { UserBookedDetailsComponent } from './user-booked-details/user-booked-details.component';
 
 const routes: Routes = [
-  { path: 'get-product', component: GetProductComponent },
-  { path: 'add-to-cart', component: AddToCartComponent },
-  { path: 'add-new-data/:id', component: AddNewDataComponent },
-  { path: 'user-booked-details', component: UserBookedDetailsComponent },
+  { path: 'get-product', component: GetProductComponent,canActivate:[AuthGuard] },
+  { path: 'add-to-cart', component: AddToCartComponent, },
+  { path: 'add-new-data/:id', component: AddNewDataComponent,canActivate:[AuthGuard] },
+  { path: 'user-booked-details', component: UserBookedDetailsComponent,canActivate:[AuthGuard]},
   {path:'login-form',component:LoginFormComponent}
 ];
 

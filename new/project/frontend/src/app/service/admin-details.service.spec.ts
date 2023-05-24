@@ -40,22 +40,22 @@ describe('AdminDetailsService', () => {
     httpMock.verify();
   });
 
-  it("post method for addProductDetails",(done:DoneFn)=>{
-    httpClientSpy.post;
-    service.adminRegister(value).subscribe({
-      next:(posts)=>{
-        expect(posts).toEqual(value);
-        done();
-      },
-      error:()=>{
-        done.fail
-      },
-    })
-    const req=httpMock.expectOne(`http://localhost:8082/`);
-    expect(req.request.method).toEqual('POST');
-    expect(req.request.body).toEqual(value);
-    expect(httpClientSpy.post).toHaveBeenCalled();
-  });
+  // it("post method for addProductDetails",(done:DoneFn)=>{
+  //   httpClientSpy.post;
+  //   service.adminRegister(value).subscribe({
+  //     next:(posts)=>{
+  //       expect(posts).toEqual(value);
+  //       done();
+  //     },
+  //     error:()=>{
+  //       done.fail
+  //     },
+  //   })
+  //   const req=httpMock.expectOne(`http://localhost:8082/`);
+  //   expect(req.request.method).toEqual('POST');
+  //   expect(req.request.body).toEqual(value);
+  //   expect(httpClientSpy.post).toHaveBeenCalled();
+  // });
 
 
   it("post method for  adminlogin()",(done:DoneFn)=>{

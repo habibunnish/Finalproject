@@ -13,7 +13,7 @@
   <li class="one" *ngIf="adminLoggedIn" (click)="goToAddNewPage()">AddHotels</li>
   <li class="one"  *ngIf="loggedIn" (click)="userBooked()" >History</li>
   <LI class="one" *ngIf="!loggedIn && !adminLoggedIn"
-    ><A routerLink="login-form">Login</A></LI
+    ><A routerLink="login-form">Login / signUp</A></LI
   >
   <li class="one" *ngIf="loggedIn || adminLoggedIn " id="logout" (click)="onLogout()">
     <a routerLink="how-it-work">Logout</a>

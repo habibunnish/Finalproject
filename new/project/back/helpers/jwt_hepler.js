@@ -23,7 +23,7 @@ module.exports={
             })
         })
     },
-    //middleware
+    
     verifyAccessToken:(req,res,next)=>{
       
             console.log("heeh")

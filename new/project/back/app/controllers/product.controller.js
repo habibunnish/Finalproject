@@ -2,6 +2,12 @@ const db = require("../models");
 const Product = db.product;
 
 exports.addProductDetails = (req, res) => {
+  const { error, value } = Product.validate(req.body);
+  if (error) {
+    return res.status(400).send({
+      message: error.details[0].message
+    });
+  }
   const product = new Product({
     tittle: req.body.tittle,
     area: req.body.area,
@@ -12,13 +18,6 @@ exports.addProductDetails = (req, res) => {
     quantity: req.body.quantity,
     base64String: req.body.base64String,
   });
-
-  // const { error, value } = Product.validate(req.body);
-  // if (error) {
-  //   return res.status(400).send({
-  //     message: error.details[0].message
-  //   });
-  // }
   product
     .save(product)
     .then((data) => {

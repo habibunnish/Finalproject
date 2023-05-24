@@ -9,10 +9,13 @@ export class LoginDetailsService {
   constructor(private httpClient: HttpClient) {}
 
   url='http://localhost:8080';
-  token=sessionStorage.getItem("UsertToken")
+  usertoken=sessionStorage.getItem("UsertToken")
  
 
   login(data:any){
-    return this.httpClient.post(`${this.url}/auth/login`, data, );
+    const headers=new HttpHeaders({
+      'Authorization':`Bearer ${this.usertoken}`
+    })
+    return this.httpClient.post(`${this.url}/auth/login`, data, {headers});
    }
 }
